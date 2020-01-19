@@ -1,0 +1,140 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,400i,700,700i);
+@import url(https://fonts.googleapis.com/css?family=Roboto&display=swap);
+.code-editor {
+  background-color: #363636;
+  color: #eee;
+  display: block;
+  caret-color: #eee;
+  border-radius: 4px;
+/* Fix text bluring during ripple animation */
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  overflow: auto;
+  padding: 1em;
+  box-sizing: border-box;
+  white-space: pre;
+  font-size: 15px;
+  font-family: Roboto Mono, monospace;
+  -moz-tab-size: 2;
+    -o-tab-size: 2;
+       tab-size: 2;
+  line-height: 1.5;
+  outline: none;
+}
+.code-editor::-moz-selection,
+.code-editor ::-moz-selection {
+  background: rgba(255,255,255,0.1);
+}
+.code-editor::selection,
+.code-editor ::selection {
+  background: rgba(255,255,255,0.1);
+}
+.code-editor .namespace {
+  opacity: 0.7;
+}
+/*
+ * Material Darker theme for PrismJS
+ *
+ * @author Oleg Dutchenko
+ * @license MIT 2018
+ */
+.code-editor .token.atrule,
+.code-editor .token.constant,
+.code-editor .token.function,
+.code-editor .token.important,
+.code-editor .token.boolean,
+.code-editor .token.keyword,
+.code-editor .token.symbol,
+.code-editor .token.id {
+  color: #c792ea;
+}
+.code-editor .token.attr-name,
+.code-editor .token.builtin,
+.code-editor .token.class {
+  color: #ffcb6b;
+}
+.code-editor .token.comment,
+.code-editor .token.doctype,
+.code-editor .token.prolog {
+  color: #616161;
+}
+.code-editor .token.inserted,
+.code-editor .token.property,
+.code-editor .token.cdata,
+.code-editor .token.char {
+  color: #80cbc4;
+}
+.code-editor .token.operator,
+.code-editor .token.punctuation {
+  color: #89ddff;
+}
+.code-editor .token.class-name,
+.code-editor .token.hexcode,
+.code-editor .token.regex {
+  color: #f2ff00;
+}
+.code-editor .token.attr-value,
+.code-editor .token.attribute,
+.code-editor .token.pseudo-class,
+.code-editor .token.pseudo-element,
+.code-editor .token.string {
+  color: #a5e844;
+}
+.code-editor .token.number,
+.code-editor .token.unit {
+  color: #fd9170;
+}
+.code-editor .token.selector,
+.code-editor .token.variable,
+.code-editor .token.deleted,
+.code-editor .token.entity,
+.code-editor .token.tag,
+.code-editor .token.url {
+  color: #f66;
+}
+.code-editor .token.important,
+.code-editor .token.id {
+  font-weight: bold;
+}
+
+body {
+  margin: 10px;
+  font-family: Roboto, sans-serif;
+}
+p {
+  margin: 10px 0;
+}
+.code-editor.inline {
+  padding: 3px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#install {
+  display: -webkit-box;
+  display: flex;
+  flex-wrap: wrap;
+  margin: -5px -5px;
+}
+#install code {
+  -webkit-box-flex: 1;
+          flex: 1;
+  margin: 5px;
+  min-width: 300px;
+}
+#props {
+  margin: 0;
+  padding-left: 25px;
+}
+#props li {
+  margin: 5px 0;
+}
+header {
+  text-align: center;
+}
+header h1 {
+  margin: 0;
+}
+header p {
+  color: #555;
+}
+

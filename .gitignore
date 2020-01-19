@@ -1,0 +1,10 @@
+
+*.log
+yarn-debug.log*
+yarn-error.log*
+
+node_modules/
+
+/index.js
+/index.css
+/yarn.lock

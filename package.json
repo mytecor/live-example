@@ -1,0 +1,46 @@
+{
+  "name": "live-example",
+  "version": "1.0.0",
+  "description": "React live code preview",
+  "main": "./index.js",
+  "author": "midnightcoder",
+  "license": "MIT",
+  "homepage": "https://midnightcoder-pro.github.io/live-example",
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-syntax-jsx": "^7.8.3",
+    "@babel/plugin-transform-react-jsx": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "autoprefixer-stylus": "^1.0.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.4.2",
+    "mini-css-extract-plugin": "^0.9.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server",
+    "build": "webpack --mode=production & babel ./src -d ./",
+    "prepublish": "yarn build"
+  },
+  "keywords": [
+    "react",
+    "live",
+    "editor",
+    "prismjs",
+    "preview",
+    "jsx"
+  ],
+  "dependencies": {
+    "buble": "^0.19.8",
+    "prismjs": "^1.19.0",
+    "rmce": "^1.0.2"
+  }
+}
