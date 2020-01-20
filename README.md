@@ -1,31 +1,47 @@
-# rmce
-###### React mini code editor
+# live-example
+###### React live code preview
 
-[In action](https://midnightcoder-pro.github.io/rmce)
+Like react-live, but much faster, smaller and customizable
 
-#### Usage example (with prismjs)
+[In action](https://midnightcoder-pro.github.io/live-example)
+
+#### Usage example
 ```jsx
-import CodeEditor from 'rmce'
-// editor theme
-import '~rmce/index.css'
-import Prism from 'prismjs'
-// add jsx language support
-import 'prismjs/components/prism-jsx'
-import React from 'react'
+import { LiveExample, Editor, Preview } from 'live-example'
+import 'rmce/index.css'
 
-function MyFancyEditor() {
-	let [code, setCode] = React.useState('<div>test</div>')
-	return <CodeEditor
-		className='code-editor'
-		highlight={code => Prism.highlight(code, Prism.languages.jsx)}
-		value={code}
-		onChange={setCode}
-		/>
+function CustomButton({children}) {
+	return <button style={{color: 'red'}}>{children}</button>
 }
+
+let bindings = {CustomButton}
+
+<LiveExample>
+	<Editor value={'<CustomButton>TEST</CustomButton>'}/>
+	<Preview bindings={bindings}/>
+</LiveExample>
+```
+
+##### Also you can use class components and raw jsx
+
+```jsx
+class extends React.Component {
+	render() {
+		return '<button>TEST</button>'
+	}
+}
+// or
+<button>TEST</button>
 ```
 
 #### Props
 
-- `value` (String): Current value of the editor i.e. the code to display. This must be a controlled prop
-- `onChange` (Function): Callback which is called when the value of the editor changes
-- `highlight` (Function): Callback which will receive code to highlight. You'll need to return an HTML string or a React element with syntax highlighting using a library such as prismjs
+##### `<Preview/>` props
+
+- `value` (String): Current value of code to display. This should be a controlled prop
+- `onChange` (Function): On code change callback
+
+##### `<Preview/>` props
+
+- `bindings` (Object): Custom globals that the code can use
+- `onError` (Function): On error callback

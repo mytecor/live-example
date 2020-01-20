@@ -1,33 +1,34 @@
 
-import 'rmce/src/index.styl'
+import 'rmce/index.css'
 import './main.styl'
 
 import { LiveExample, Editor, Preview } from '../src'
 
+let bindings = {LiveExample, Editor, Preview}
+
 function Example(props) {
-	let [code, setCode] = React.useState(`import CodeEditor from 'rmce'
-// editor theme
-import 'rmce/index.css'
-import Prism from 'prismjs'
-// add jsx language support
-import 'prismjs/components/prism-jsx'
-import React from 'react'
+	let code = `() => {
+	function CustomButton({children}) {
+		return <button style={{color: 'red'}}>{children}</button>
+	}
 
-function MyFancyEditor() {
-	let [code, setCode] = React.useState('<div>test</div>')
-	return <CodeEditor
-		className='code-editor'
-		highlight={code => Prism.highlight(code, Prism.languages.jsx)}
-		value={code}
-		onChange={setCode}
-		/>
-}`)
+	let bindings = {CustomButton}
 
-	return <LiveExample className='example' code={children}>
-		<Preview className='preview' bindings={bindings}/>
-		<Editor className='code-editor'/>
+	return <LiveExample id='example'>
+		<Editor className='code-editor' value={'<CustomButton>TEST</CustomButton>'}/>
+		<Preview id='preview' bindings={bindings}/>
 	</LiveExample>
+}`
+	return <LiveExample>
+	<Editor className='code-editor' value={code}/>
+	<p>Result</p>
+	<Preview bindings={bindings}/>
+</LiveExample>
 }
+
+
+import Prism from 'prismjs'
+import 'prismjs/components/prism-bash'
 
 function Code({children, lang, inline}) {
 	return <code className={'code-editor' + (inline ? ' inline' : '')} dangerouslySetInnerHTML={{__html: lang? Prism.highlight(children, Prism.languages[lang]) : children}}/>
@@ -35,22 +36,42 @@ function Code({children, lang, inline}) {
 
 ReactDOM.render(<>
 	<header>
-		<h1>rmce</h1>
-		<p>React mini code editor</p>
-		<a href='https://github.com/midnightcoder-pro/rmce'>github</a>
+		<h1>live-example</h1>
+		<p>React live code preview</p>
+		<a href='https://github.com/midnightcoder-pro/live-example'>github</a>
 	</header>
+	<p>Like <a href='https://github.com/FormidableLabs/react-live'>react-live</a>, but much faster, smaller and customizable</p>
 	<p>Install</p>
 	<div id='install'>
-		<Code lang='bash'>yarn add rmce</Code>
-		<Code lang='bash'>npm install rmce</Code>
+		<Code lang='bash'>yarn add live-example</Code>
+		<Code lang='bash'>npm install live-example</Code>
 	</div>
-	<p>Usage example (with prismjs)</p>
+	<p>Import</p>
+	<Code lang='jsx'>{`import { LiveExample, Editor, Preview } from 'live-example'
+import 'rmce/index.css'`}</Code>
+	<p>Usage example (Playground)</p>
 	<Example/>
-	
-	<p>Props</p>
-	<ul id='props'>
-		<li><Code inline>value</Code> (String): Current value of the editor i.e. the code to display. This must be a controlled prop</li>
-		<li><Code inline>onChange</Code> (Function): Callback which is called when the value of the editor changes</li>
-		<li><Code inline>highlight</Code> (Function): Callback which will receive code to highlight. You'll need to return an HTML string or a React element with syntax highlighting using a library such as prismjs</li>
+
+	<p>Also you can use class components and raw jsx</p>
+
+	<Code lang='jsx'>{`class extends React.Component {
+	render() {
+		return '<button>TEST</button>'
+	}
+}
+// or
+<button>TEST</button>`}
+</Code>
+
+	<p><b>{'<Editor/>'}</b> props</p>
+	<ul>
+		<li><Code inline>value</Code> (String): Current value of code to display. This should be a controlled prop</li>
+		<li><Code inline>onChange</Code> (Function): On code change callback</li>
+	</ul>
+
+	<p><b>{'<Preview/>'}</b> props</p>
+	<ul>
+		<li><Code inline>bindings</Code> (Object): Custom globals that the code can use</li>
+		<li><Code inline>onError</Code> (Function): On error callback</li>
 	</ul>
 </>, document.getElementById('root'))
