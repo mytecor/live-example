@@ -27,7 +27,7 @@
   },
   "scripts": {
     "dev": "webpack-dev-server",
-    "build": "babel ./src -d ./",
+    "build": "webpack --production & babel ./src -d ./",
     "prepublish": "yarn build"
   },
   "keywords": [
