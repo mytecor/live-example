@@ -62,6 +62,7 @@ import 'rmce/index.css'`}</Code>
 // or
 <button>TEST</button>`}
 </Code>
+	<p>Props</p>
 
 	<p><b>{'<Editor/>'}</b> props</p>
 	<ul>
