@@ -36,7 +36,7 @@ class extends React.Component {
 
 #### Props
 
-##### `<Preview/>` props
+##### `<Editor/>` props
 
 - `value` (String): Current value of code to display. This should be a controlled prop
 - `onChange` (Function): On code change callback
