@@ -2,6 +2,8 @@
 import 'rmce/index.css'
 import './main.styl'
 
+import React from 'react'
+import ReactDOM from 'react-dom'
 import { LiveExample, Editor, Preview } from '../src'
 
 let bindings = {LiveExample, Editor, Preview}

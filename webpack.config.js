@@ -1,45 +1,36 @@
 
-let webpack = require('webpack')
-
-let MiniCssExtractPlugin = require('mini-css-extract-plugin')
+let CssExtract = require('extract-css-chunks-webpack-plugin')
+let LiveReloadPlugin = require('webpack-livereload-plugin')
 
 module.exports = {
+	stats: 'minimal',
 	entry: './example/App.js',
 	output: {
 		filename: 'bundle.js',
 		path: __dirname + '/example'
+	},
+	watchOptions: {
+		poll: 1000
 	},
 	module: {
 		rules: [
 			{
 				test: /\.styl$/,
 				use: [
-					{
-						loader: MiniCssExtractPlugin.loader,
-						options: {
-							hmr: true,
-							// reloadAll: true
-						}
-					},
+					CssExtract.loader,
 					'css-loader',
 					{
-						loader: 'stylus-loader',
+						loader: 'stylus-native-loader',
 						options: {
 							use: [require('autoprefixer-stylus')()]
 						}
 					}
-				],
+				]
 			},
 			{
 				test: /\.css$/,
 				use: [
-					{
-						loader: MiniCssExtractPlugin.loader,
-						options: {
-							hmr: true,
-							// reloadAll: true
-						}
-					},
+					CssExtract.loader,
 					'css-loader'
 				],
 			},
@@ -51,18 +42,9 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new MiniCssExtractPlugin({
-			filename: 'bundle.css'
-		}),
-		new webpack.ProvidePlugin({
-			React: 'react',
-			ReactDOM: 'react-dom'
+		new LiveReloadPlugin,
+		new CssExtract({
+			filename: 'bundle.css',
 		})
-	],
-	devServer: {
-		publicPath: '/example/',
-		inline: true,
-		hot: true,
-		port: 80
-	}
+	]
 }

@@ -14,14 +14,12 @@ p {
   vertical-align: middle;
 }
 #install {
-  display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
   margin: -5px -5px;
 }
 #install code {
-  -webkit-box-flex: 1;
-          flex: 1;
+  flex: 1;
   margin: 5px;
   min-width: 300px;
 }
@@ -33,25 +31,20 @@ ul li {
   margin: 5px 0;
 }
 #example {
-  display: -webkit-box;
   display: flex;
   flex-wrap: wrap;
 }
 #example code {
-  -webkit-box-flex: 2;
-          flex: 2;
+  flex: 2;
   min-width: 50%;
 }
 #example #preview {
   padding: 10px;
   min-width: 300px;
-  -webkit-box-flex: 1;
-          flex: 1;
-  display: -webkit-box;
+  flex: 1;
   display: flex;
   align-self: center;
-  -webkit-box-pack: center;
-          justify-content: center;
+  justify-content: center;
   overflow: hidden;
 }
 header {
