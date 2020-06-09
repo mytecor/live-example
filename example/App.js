@@ -32,8 +32,8 @@ function Example(props) {
 import Prism from 'prismjs'
 import 'prismjs/components/prism-bash'
 
-function Code({children, lang, inline}) {
-	return <code className={'code-editor' + (inline ? ' inline' : '')} dangerouslySetInnerHTML={{__html: lang? Prism.highlight(children, Prism.languages[lang]) : children}}/>
+function Code({children, lang}) {
+	return <code className='code-editor' dangerouslySetInnerHTML={{__html: lang? Prism.highlight(children, Prism.languages[lang]) : children}}/>
 }
 
 ReactDOM.render(<>
@@ -64,17 +64,19 @@ import 'rmce/index.css'`}</Code>
 // or
 <button>TEST</button>`}
 </Code>
+<div id='props'>
 	<p>Props</p>
-
+	
 	<p><b>{'<Editor/>'}</b> props</p>
 	<ul>
-		<li><Code inline>value</Code> (String): Current value of code to display. This should be a controlled prop</li>
-		<li><Code inline>onChange</Code> (Function): On code change callback</li>
+		<li><Code>value</Code> (String): Current value of code to display. This should be a controlled prop</li>
+		<li><Code>onChange</Code> (Function): On code change callback</li>
 	</ul>
-
+	
 	<p><b>{'<Preview/>'}</b> props</p>
 	<ul>
-		<li><Code inline>bindings</Code> (Object): Custom globals that the code can use</li>
-		<li><Code inline>onError</Code> (Function): On error callback</li>
+		<li><Code>bindings</Code> (Object): Custom globals that the code can use</li>
+		<li><Code>onError</Code> (Function): On error callback</li>
 	</ul>
+</div>
 </>, document.getElementById('root'))

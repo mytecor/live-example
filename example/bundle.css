@@ -8,37 +8,7 @@ body {
 p {
   margin: 10px 0;
 }
-.code-editor.inline {
-  padding: 3px;
-  display: inline-block;
-  vertical-align: middle;
-}
-#install {
-  display: flex;
-  flex-wrap: wrap;
-  margin: -5px -5px;
-}
-#install code {
-  flex: 1;
-  margin: 5px;
-  min-width: 300px;
-}
-ul {
-  margin: 0;
-  padding-left: 25px;
-}
-ul li {
-  margin: 5px 0;
-}
-#example {
-  display: flex;
-  flex-wrap: wrap;
-}
-#example code {
-  flex: 2;
-  min-width: 50%;
-}
-#example #preview {
+#preview {
   padding: 10px;
   min-width: 300px;
   flex: 1;
@@ -46,6 +16,28 @@ ul li {
   align-self: center;
   justify-content: center;
   overflow: hidden;
+}
+#install {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -5px -5px;
+}
+#install .code-editor {
+  flex: 1;
+  margin: 5px;
+  min-width: 300px;
+}
+#props {
+  margin: 0;
+  padding-left: 25px;
+}
+#props .code-editor {
+  padding: 3px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#props li {
+  margin: 5px 0;
 }
 header {
   text-align: center;

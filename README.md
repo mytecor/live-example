@@ -7,6 +7,8 @@ Like react-live, but much faster, smaller and customizable
 
 #### Usage example
 ```jsx
+import React from 'react'
+import ReactDOM from 'react-dom'
 import { LiveExample, Editor, Preview } from 'live-example'
 import 'rmce/index.css'
 
@@ -16,10 +18,10 @@ function CustomButton({children}) {
 
 let bindings = {CustomButton}
 
-<LiveExample>
+ReactDOM.render(<LiveExample>
 	<Editor value={'<CustomButton>TEST</CustomButton>'}/>
 	<Preview bindings={bindings}/>
-</LiveExample>
+</LiveExample>, '#root')
 ```
 
 ##### Also you can use class components and raw jsx

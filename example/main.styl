@@ -8,44 +8,37 @@ body
 p
 	margin: 10px 0
 
-.code-editor.inline
-	padding: 3px
-	display: inline-block
-	vertical-align: middle
-		
+#preview
+	padding: 10px
+	min-width: 300px
+	flex: 1
+	display: flex
+	align-self: center
+	justify-content: center
+	overflow: hidden
+
 #install
 	display: flex
 	flex-wrap: wrap
 	margin: -5px -5px
 	
-	code
+	.code-editor
 		flex: 1
 		margin: 5px
 		
 		min-width: 300px
 
-ul
+#props
 	margin: 0
 	padding-left: 25px
+	
+	.code-editor
+		padding: 3px
+		display: inline-block
+		vertical-align: middle
+	
 	li
 		margin: 5px 0
-
-#example
-	display: flex
-	flex-wrap: wrap
-	
-	code
-		flex: 2
-		min-width: 50%
-	
-	#preview
-		padding: 10px
-		min-width: 300px
-		flex: 1
-		display: flex
-		align-self: center
-		justify-content: center
-		overflow: hidden
 
 header
 	text-align: center
@@ -55,4 +48,4 @@ header
 		
 	p
 		color: #555
-		
+
