@@ -21,7 +21,7 @@ let bindings = {CustomButton}
 ReactDOM.render(<LiveExample>
 	<Editor value={'<CustomButton>TEST</CustomButton>'}/>
 	<Preview bindings={bindings}/>
-</LiveExample>, '#root')
+</LiveExample>, document.getElementById('root'))
 ```
 
 ##### Also you can use class components and raw jsx
