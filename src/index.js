@@ -15,7 +15,13 @@ import 'prismjs/components/prism-jsx'
 
 import CodeEditor from 'rmce'
 
-export let Editor = React.forwardRef(function Editor({value, onChange = () => {}, ...props}, ref) {
+
+let style = []
+Prism.hooks.add('wrap', env => {
+	env.classes = env.classes.map(cls => style[cls] || cls)
+})
+
+export let Editor = React.forwardRef(function Editor({value, onChange = () => {}, classNames = [], ...props}, ref) {
 	let [code, setCode] = React.useContext(Context)
 
 	React.useEffect(() => {
@@ -30,7 +36,10 @@ export let Editor = React.forwardRef(function Editor({value, onChange = () => {}
 			setCode(code)
 			onChange(code)
 		}}
-		highlight={code => Prism.highlight(code, Prism.languages.jsx)}
+		highlight={code => {
+			style = classNames
+			return Prism.highlight(code, Prism.languages.jsx)
+		}}
 		/>
 })
 
