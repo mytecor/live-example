@@ -63,7 +63,7 @@ function Example1() {
 
 		<Code lang='jsx'>{`class extends React.Component {
 	render() {
-		return '<button>TEST</button>'
+		return <button>TEST</button>
 	}
 }
 // or

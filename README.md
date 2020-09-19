@@ -29,7 +29,7 @@ ReactDOM.render(<LiveExample>
 ```jsx
 class extends React.Component {
 	render() {
-		return '<button>TEST</button>'
+		return <button>TEST</button>
 	}
 }
 // or

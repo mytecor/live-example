@@ -44,7 +44,7 @@ export let Editor = React.forwardRef(function Editor({value, onChange = () => {}
 })
 
 
-import { transform } from 'buble'
+import { transform } from 'sucrase-browser'
 
 class ErrorHandler extends React.Component {
 	static contextType = Context
@@ -59,7 +59,7 @@ class ErrorHandler extends React.Component {
 		try {
 			let El = Function(
 				'React,' + Object.keys(bindings),
-				transform('return ' + this.context[0]).code
+				transform('return ' + this.context[0], {transforms: ['jsx']}).code
 			).call(null, React, ...Object.values(bindings))
 
 			return typeof El == 'function'? <El/>: El || null
