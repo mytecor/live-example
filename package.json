@@ -1,34 +1,33 @@
 {
   "name": "live-example",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "React live code preview",
   "main": "./index.js",
   "author": "midnightcoder",
   "license": "MIT",
   "homepage": "https://midnightcoder-pro.github.io/live-example",
   "devDependencies": {
-    "@babel/cli": "^7.11.6",
-    "@babel/core": "^7.11.6",
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
-    "@babel/preset-react": "^7.10.4",
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.12.1",
+    "@babel/preset-react": "^7.12.5",
     "autoprefixer-stylus": "^1.0.0",
     "babel-loader": "^8.1.0",
     "babel-minify": "^0.5.1",
-    "babel-preset-minify": "^0.5.1",
-    "css-loader": "^4.3.0",
-    "extract-css-chunks-webpack-plugin": "^4.7.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "css-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^1.2.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "stylus": "^0.54.8",
-    "stylus-native-loader": "^1.3.2",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12",
-    "webpack-livereload-plugin": "^2.3.0"
+    "stylus-loader": "^4.2.0",
+    "webpack": "^5.4.0",
+    "webpack-cli": "^4.1.0",
+    "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "dev": "webpack --mode=development -w",
-    "build": "webpack --mode=production & babel ./src -d ./"
+    "dev": "webpack s --mode=development",
+    "build": "webpack & babel ./src -d ./ & stylus -c ./src -o ./"
   },
   "keywords": [
     "react",
@@ -39,7 +38,7 @@
     "jsx"
   ],
   "dependencies": {
-    "prismjs": "^1.21.0",
+    "prismjs": "^1.22.0",
     "rmce": "^1.2.0",
     "sucrase-browser": "^3.15.0"
   }
