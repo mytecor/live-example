@@ -1,5 +1,5 @@
 
-import 'rmce/index.css'
+import 'rmce/src/index.styl'
 import './main.styl'
 
 import React from 'react'
@@ -95,14 +95,14 @@ let style = {
 function Props() {
 	return <div id='props'>
 		<p>Props</p>
-		
+
 		<p><b>{'<Editor/>'}</b> props</p>
 		<ul>
 			<li><Code>value</Code> (String): Current value of code to display. This should be a controlled prop</li>
 			<li><Code>onChange</Code> (Function): On code change callback</li>
 			<li><Code>classNames</Code> (Object): Accets a list of theme classes</li>
 		</ul>
-		
+
 		<p><b>{'<Preview/>'}</b> props</p>
 		<ul>
 			<li><Code>bindings</Code> (Object): Custom globals that the code can use</li>
@@ -119,10 +119,10 @@ ReactDOM.render(<>
 		<a href='https://github.com/midnightcoder-pro/live-example'>github</a>
 	</header>
 	<p>Like <a href='https://github.com/FormidableLabs/react-live'>react-live</a>, but much faster, smaller and customizable</p>
-	
+
 	<Install/>
 	<Import/>
-	
+
 	<Playground/>
 	<Example1/>
 	<Example2/>

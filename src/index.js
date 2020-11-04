@@ -31,7 +31,7 @@ export let Editor = React.forwardRef(function Editor({value, onChange = () => {}
 	return <CodeEditor
 		{...props}
 		ref={ref}
-		value={value}
+		value={code}
 		onChange={code => {
 			setCode(code)
 			onChange(code)
@@ -71,6 +71,6 @@ class ErrorHandler extends React.Component {
 }
 
 
-export let Preview = React.forwardRef(function Preview({bindings, ...props}, ref) {	
+export let Preview = React.forwardRef(function Preview({bindings, ...props}, ref) {
 	return <div ref={ref} {...props}><ErrorHandler bindings={bindings}/></div>
 })

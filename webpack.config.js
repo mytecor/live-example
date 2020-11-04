@@ -1,6 +1,5 @@
 
-let CssExtract = require('extract-css-chunks-webpack-plugin')
-let LiveReloadPlugin = require('webpack-livereload-plugin')
+let CssExtract = require('mini-css-extract-plugin')
 
 module.exports = {
 	stats: 'minimal',
@@ -8,6 +7,12 @@ module.exports = {
 	output: {
 		filename: 'bundle.js',
 		path: __dirname + '/example'
+	},
+	devServer: {
+		contentBase: './',
+		publicPath: '/example',
+		compress: true,
+		port: 80
 	},
 	watchOptions: {
 		poll: 1000
@@ -20,19 +25,14 @@ module.exports = {
 					CssExtract.loader,
 					'css-loader',
 					{
-						loader: 'stylus-native-loader',
+						loader: 'stylus-loader',
 						options: {
-							use: [require('autoprefixer-stylus')()]
+							stylusOptions: {
+								use: [require('autoprefixer-stylus')()]
+							}
 						}
 					}
 				]
-			},
-			{
-				test: /\.css$/,
-				use: [
-					CssExtract.loader,
-					'css-loader'
-				],
 			},
 			{
 				test: /\.js$/,
@@ -42,7 +42,6 @@ module.exports = {
 		],
 	},
 	plugins: [
-		new LiveReloadPlugin,
 		new CssExtract({
 			filename: 'bundle.css',
 		})
