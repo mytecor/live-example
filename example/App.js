@@ -1,116 +1,97 @@
 
-import 'rmce/src/index.styl'
-import './main.styl'
-
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { LiveExample, Editor, Preview } from '../src'
 
-let bindings = {LiveExample, Editor, Preview}
+import Compiler from '../src'
+import CodeEditor from 'rmce'
 
-function Playground(props) {
-	let code = `() => {
-	function CustomButton({children}) {
-		return <button style={{color: 'red'}}>{children}</button>
-	}
+import './main.styl'
 
-	let bindings = {CustomButton}
-
-	return <LiveExample id='example'>
-		<Editor className='code-editor' value={'<CustomButton>TEST</CustomButton>'}/>
-		<Preview id='preview' bindings={bindings}/>
-	</LiveExample>
-}`
-	return <LiveExample>
-		<p>Playground</p>
-		<Editor className='code-editor' value={code}/>
-		<p>Result</p>
-		<Preview bindings={bindings}/>
-	</LiveExample>
-}
-
-
-import Prism from 'prismjs'
+// Languages support
+import 'prismjs/components/prism-jsx'
 import 'prismjs/components/prism-bash'
+import 'prismjs/components/prism-typescript'
+
 
 function Code({children, lang}) {
-	return <code className='code-editor' dangerouslySetInnerHTML={{__html: lang? Prism.highlight(children, Prism.languages[lang]) : children}}/>
+	return <CodeEditor className='rmce' value={children} readOnly language={lang}/>
+}
+
+let bindings = { React, Compiler, CodeEditor }
+
+function Fallback({error}) {
+	return <div className='error'>{error.message}</div>
 }
 
 
-function Import() {
-	return <>
-		<p>Import</p>
-		<Code lang='jsx'>{`import { LiveExample, Editor, Preview } from 'live-example'
-import 'rmce/index.css'`}</Code>
-	</>
-}
+
 
 
 function Install() {
 	return <>
-		<p>Install</p>
+		<h3>Install</h3>
 		<div id='install'>
 			<Code lang='bash'>yarn add live-example</Code>
-			<Code lang='bash'>npm install live-example</Code>
+			<Code lang='bash'>npm add live-example</Code>
 		</div>
 	</>
 }
 
-function Example1() {
+function Imports() {
 	return <>
-		<p>Also you can use class components and raw jsx</p>
-
-		<Code lang='jsx'>{`class extends React.Component {
-	render() {
-		return <button>TEST</button>
-	}
-}
-// or
-<button>TEST</button>`}
-	</Code>
+		<h3>Imports</h3>
+		<Code lang='jsx'>{`import React from 'react'
+import Compiler from 'live-example'
+import CodeEditor from 'rmce'
+import 'rmce/index.css'`}</Code>
 	</>
 }
 
+function Playground() {
+	let [code, setCode] = React.useState(`() => {
+	let [code, setCode] = React.useState('<CustomButton>TEST</CustomButton>')
 
-function Example2() {
+	function CustomButton({children}) {
+		return <button style={{color: 'red'}}>{children}</button>
+	}
+
+	function Fallback({error}) {
+		return <div className='error'>{error.message}</div>
+	}
+
+	let bindings = { CustomButton }
+
+	return <div id='example'>
+		<CodeEditor language='jsx' className='rmce' value={code} onChange={setCode}/>
+		<div id='preview'>
+			<Compiler code={code} bindings={bindings} fallback={Fallback}/>
+		</div>
+	</div>
+}`)
+
 	return <>
-		<p>Custom class names</p>
-
-		<Code lang='jsx'>{`import style from './mystyle'
-or
-let style = {
-	token: 'mytoken',
-	keyword: 'mykeyword'
-}
-
-...
-
-<Editor classNames={style}/>
-`}
-	</Code>
+		<h3>Playground</h3>
+		<CodeEditor className='rmce' value={code} onChange={setCode} language='jsx'/>
+		<h3>Result</h3>
+		<Compiler code={code} bindings={bindings} fallback={Fallback}/>
 	</>
 }
 
 function Props() {
-	return <div id='props'>
-		<p>Props</p>
+	return <>
+		<h3>Props:</h3>
+		<Code lang='ts'>{`class Props {
+	// Current value of the code to compile
+	code: string = ''
 
-		<p><b>{'<Editor/>'}</b> props</p>
-		<ul>
-			<li><Code>value</Code> (String): Current value of code to display. This should be a controlled prop</li>
-			<li><Code>onChange</Code> (Function): On code change callback</li>
-			<li><Code>classNames</Code> (Object): Accets a list of theme classes</li>
-		</ul>
+	// Bindings provided for sucrase
+	bindings: object = {}
 
-		<p><b>{'<Preview/>'}</b> props</p>
-		<ul>
-			<li><Code>bindings</Code> (Object): Custom globals that the code can use</li>
-			<li><Code>onError</Code> (Function): On error callback</li>
-		</ul>
-	</div>
+	// Fallback component
+	fallback: ComponentClass<FallbackProps> | FunctionComponent<FallbackProps> = () => null
+}`}</Code>
+	</>
 }
-
 
 ReactDOM.render(<>
 	<header>
@@ -121,11 +102,18 @@ ReactDOM.render(<>
 	<p>Like <a href='https://github.com/FormidableLabs/react-live'>react-live</a>, but much faster, smaller and customizable</p>
 
 	<Install/>
-	<Import/>
+	<Imports/>
 
 	<Playground/>
-	<Example1/>
-	<Example2/>
+	<p>Also you can use class components and raw jsx</p>
+
+		<Code lang='jsx'>{`class extends React.Component {
+	render() {
+		return <button>TEST</button>
+	}
+}
+// or
+<button>TEST</button>`}</Code>
+
 	<Props/>
 </>, document.getElementById('root'))
-

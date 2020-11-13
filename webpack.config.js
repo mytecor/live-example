@@ -37,7 +37,17 @@ module.exports = {
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loader: 'babel-loader'
+				loader: 'babel-loader',
+				options: {
+					babelrc: false,
+					presets: [
+						'@babel/react'
+					],
+					plugins: [
+						['@babel/plugin-proposal-class-properties', {'loose': true}],
+						'@babel/plugin-proposal-object-rest-spread'
+					]
+				}
 			}
 		],
 	},

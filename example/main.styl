@@ -1,4 +1,5 @@
 
+@import 'rmce'
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap')
 
 body
@@ -21,31 +22,27 @@ p
 	display: flex
 	flex-wrap: wrap
 	margin: -5px -5px
-	
-	.code-editor
+
+	.rmce
 		flex: 1
 		margin: 5px
-		
+
 		min-width: 300px
 
-#props
-	margin: 0
-	padding-left: 25px
-	
-	.code-editor
-		padding: 3px
-		display: inline-block
-		vertical-align: middle
-	
-	li
-		margin: 5px 0
+.error
+	border: 2px solid red
+	padding: 8px
+	border-radius: 8px
+
+	&::before
+		content: 'Error: '
 
 header
 	text-align: center
 
 	h1
 		margin: 0
-		
+
 	p
 		color: #555
 

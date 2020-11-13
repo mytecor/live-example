@@ -1,32 +1,41 @@
 # live-example
 ###### React live code preview
 
-Like react-live, but much faster, smaller and customizable
-
-[In action](https://midnightcoder-pro.github.io/live-example)
+[In action (Playground)](https://midnightcoder-pro.github.io/live-example)
 
 #### Usage example
-```jsx
+```js
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { LiveExample, Editor, Preview } from 'live-example'
+import Compiler from 'live-example'
+import CodeEditor from 'rmce'
 import 'rmce/index.css'
 
 function CustomButton({children}) {
 	return <button style={{color: 'red'}}>{children}</button>
 }
 
-let bindings = {CustomButton}
+function Fallback({error}) {
+	return <div className='error'>{error.message}</div>
+}
 
-ReactDOM.render(<LiveExample>
-	<Editor value={'<CustomButton>TEST</CustomButton>'}/>
-	<Preview bindings={bindings}/>
-</LiveExample>, document.getElementById('root'))
+let bindings = { CustomButton }
+
+function MyFancyExample() {
+	let [code, setCode] = React.useState('<CustomButton>TEST</CustomButton>')
+
+	return <div id='example'>
+		<CodeEditor language='jsx' className='rmce' value={code} onChange={setCode}/>
+		<div id='preview'>
+			<Compiler code={code} bindings={bindings} fallback={Fallback}/>
+		</div>
+	</div>
+}
+
+ReactDOM.render(<MyFancyExample/>, document.getElementById('root'))
 ```
 
 ##### Also you can use class components and raw jsx
-
-```jsx
+```js
 class extends React.Component {
 	render() {
 		return <button>TEST</button>
@@ -37,13 +46,15 @@ class extends React.Component {
 ```
 
 #### Props
+```ts
+class Props {
+	// Current value of the code to compile
+	code: string = ''
 
-##### `<Editor/>` props
+	// Bindings provided for sucrase
+	bindings: object = {}
 
-- `value` (String): Current value of code to display. This should be a controlled prop
-- `onChange` (Function): On code change callback
-
-##### `<Preview/>` props
-
-- `bindings` (Object): Custom globals that the code can use
-- `onError` (Function): On error callback
+	// Fallback component
+	fallback: ComponentClass<FallbackProps> | FunctionComponent<FallbackProps> = () => null
+}
+```

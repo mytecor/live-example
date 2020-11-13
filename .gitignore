@@ -4,5 +4,6 @@
 node_modules/
 
 /index.js
+/prism.js
 /index.css
 /yarn.lock
