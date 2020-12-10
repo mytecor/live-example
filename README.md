@@ -1,7 +1,7 @@
 # live-example
 ###### React live code preview
 
-[In action (Playground)](https://midnightcoder-pro.github.io/live-example)
+[In action (Playground)](https://mytecor.github.io/live-example)
 
 #### Usage example
 ```js

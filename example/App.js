@@ -97,7 +97,7 @@ ReactDOM.render(<>
 	<header>
 		<h1>live-example</h1>
 		<p>React live code preview</p>
-		<a href='https://github.com/midnightcoder-pro/live-example'>github</a>
+		<a href='https://github.com/mytecor/live-example'>github</a>
 	</header>
 	<p>Like <a href='https://github.com/FormidableLabs/react-live'>react-live</a>, but much faster, smaller and customizable</p>
 
